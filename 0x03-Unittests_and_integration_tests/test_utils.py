@@ -7,6 +7,7 @@ from utils import (access_nested_map, get_json)
 from unittest.mock import patch, MagicMock
 import requests
 
+
 class TestAccessNestedMap(unittest.TestCase):
     '''class for testing the access nested map function'''
 
@@ -37,10 +38,7 @@ class TestGetJson(unittest.TestCase):
         ("http://holberton.io", {"payload": False}),
     ])
     @patch('utils.get_json')
-    def test_get_json(self, test_url, test_payload, mock_get):
+    def test_get_json(self, test_url, test_payload, mock_get_json):
         '''function test that utils.get_json returns the expected result.'''
-        mock_response  = MagicMock()
-        mock_response.json.return_value = test_payload
-        mock_get.get.return_value = mock_response 
-        self.assertEqual(get_json(test_url), test_payload)
-        
+        mock_get_json.return_value = test_payload
+        self.assertEqual(mock_get_json(test_url), test_payload)
