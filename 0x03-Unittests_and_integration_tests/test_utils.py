@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 '''testing the util file'''
 
-import unittest
 from parameterized import parameterized
+import unittest
 from unittest.mock import patch
 from utils import (access_nested_map, get_json, memoize)
 import requests
@@ -45,24 +45,26 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    '''testmemoize class'''
+    '''Class for Testing Memoize '''
 
     def test_memoize(self):
-        '''test memoixe method'''
+        '''test memoixe function'''
 
         class TestClass:
-            '''test class'''
+            '''test class for memoize'''
+
             def a_method(self):
-                '''a_method'''
                 return 42
 
             @memoize
             def a_property(self):
-                '''memoize method'''
                 return self.a_method()
 
-    with patch.object(TestClass, 'a_method') as mock:
-        test_class = TestClass()
-        test_class.a_property()
-        test_class.a_property()
-        mock.assert_called_once()
+        with patch.object(TestClass, 'a_method') as mock:
+            test_class = TestClass()
+            test_class.a_property()
+            test_class.a_property()
+            mock.assert_called_once()
+
+
+
